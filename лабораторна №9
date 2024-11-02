@@ -1,20 +1,37 @@
-# Створення файлу TF10_1 з текстовими рядками різної довжини
-with open("TF10_1.txt", "w") as file1:
-    lines = ["Hello123", "Python programming456", "is fun789!", "Test data 0 for you!"]
-    file1.write("\n".join(lines))
+try:
+    # Створення файлу TF10_1 з текстовими рядками різної довжини
+    with open("TF10_1.txt", "w") as file1:
+        lines = ["Hello123", "Python programming456", "is fun789!", "Test data 0 for you!"]
+        file1.write("\n".join(lines))
+except Exception as e:
+    print(f"Помилка при створенні файлу TF10_1: {e}")
 
-# Читання файлу TF10_1, видалення цифр і запис у TF10_2 по 10 символів у рядку
-with open("TF10_1.txt", "r") as file1:
-    content = file1.read()
-    # Видаляємо всі цифри
-    cleaned_content = ''.join([char for char in content if not char.isdigit()])
-    
-    # Записуємо в TF10_2 по 10 символів у рядок
-    with open("TF10_2.txt", "w") as file2:
-        for i in range(0, len(cleaned_content), 10):
-            file2.write(cleaned_content[i:i+10] + "\n")
+try:
+    # Читання файлу TF10_1, видалення цифр і запис у TF10_2 по 10 символів у рядку
+    with open("TF10_1.txt", "r") as file1:
+        content = file1.read()
+        # Видаляємо всі цифри
+        cleaned_content = ''.join([char for char in content if not char.isdigit()])
+        
+        try:
+            # Записуємо в TF10_2 по 10 символів у рядок
+            with open("TF10_2.txt", "w") as file2:
+                for i in range(0, len(cleaned_content), 10):
+                    file2.write(cleaned_content[i:i+10] + "\n")
+        except Exception as e:
+            print(f"Помилка при записі у файл TF10_2: {e}")
+except FileNotFoundError:
+    print("Файл TF10_1 не знайдено.")
+except Exception as e:
+    print(f"Сталася помилка при читанні файлу TF10_1: {e}")
 
-# Читання вмісту файлу TF10_2 та вивід його по рядках
-with open("TF10_2.txt", "r") as file2:
-    for line in file2:
-        print(line.strip())
+try:
+    # Читання вмісту файлу TF10_2 та вивід його по рядках
+    with open("TF10_2.txt", "r") as file2:
+        for line in file2:
+            print(line.strip())
+except FileNotFoundError:
+    print("Файл TF10_2 не знайдено.")
+except Exception as e:
+    print(f"Сталася помилка при читанні файлу TF10_2: {e}")
+
